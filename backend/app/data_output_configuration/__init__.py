@@ -7,6 +7,7 @@ from .postgresql.schema import PostgreSQLTechnicalAssetConfiguration
 from .redshift.schema import RedshiftTechnicalAssetConfiguration
 from .s3.schema import S3TechnicalAssetConfiguration
 from .snowflake.schema import SnowflakeTechnicalAssetConfiguration
+from .azure_api.schema import AzureApiTechnicalAssetConfiguration
 
 __all__ = [
     "ConveyorPlugin",
@@ -18,4 +19,5 @@ __all__ = [
     "SnowflakeTechnicalAssetConfiguration",
     "S3TechnicalAssetConfiguration",
     "AzureBlobTechnicalAssetConfiguration",
+    "AzureApiTechnicalAssetConfiguration",
 ]

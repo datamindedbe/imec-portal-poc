@@ -1,5 +1,8 @@
 from typing import Annotated, Union
 
+from app.data_output_configuration.azure_api.schema import (
+    AzureApiTechnicalAssetConfiguration,
+)
 from pydantic import Field
 
 from app.data_output_configuration.azure_blob.schema import (
@@ -33,6 +36,7 @@ DataOutputs = Union[
     PostgreSQLTechnicalAssetConfiguration,
     OSISemanticModelTechnicalAssetConfiguration,
     AzureBlobTechnicalAssetConfiguration,
+    AzureApiTechnicalAssetConfiguration,
 ]
 
 DataOutputMap = {
@@ -44,6 +48,7 @@ DataOutputMap = {
     DataOutputTypes.PostgreSQLTechnicalAssetConfiguration: PostgreSQLTechnicalAssetConfiguration,
     DataOutputTypes.OSISemanticModelTechnicalAssetConfiguration: OSISemanticModelTechnicalAssetConfiguration,
     DataOutputTypes.AzureBlobTechnicalAssetConfiguration: AzureBlobTechnicalAssetConfiguration,
+    DataOutputTypes.AzureApiTechnicalAssetConfiguration: AzureApiTechnicalAssetConfiguration,
 }
 
 DataOutputConfiguration = Annotated[

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+    <title>Icon-azure-api</title>
+    <rect x="0.5" y="2.17" width="17" height="13.67" rx="0.57" fill="#e6e6e6"/>
+    <rect x="0.5" y="2.17" width="17" height="3.62" rx="0.57" fill="#37c2b1"/>
+    <circle cx="4.5" cy="10" r="1.8" fill="none" stroke="#37c2b1" stroke-width="1.2"/>
+    <circle cx="9" cy="10" r="1.8" fill="none" stroke="#258277" stroke-width="1.2"/>
+    <circle cx="13.5" cy="10" r="1.8" fill="none" stroke="#37c2b1" stroke-width="1.2"/>
+    <line x1="6.3" y1="10" x2="7.2" y2="10" stroke="#258277" stroke-width="1.2"/>
+    <line x1="10.8" y1="10" x2="11.7" y2="10" stroke="#258277" stroke-width="1.2"/>
+</svg>

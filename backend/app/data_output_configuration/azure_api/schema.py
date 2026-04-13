@@ -1,0 +1,77 @@
+from typing import ClassVar, Literal, Optional
+from uuid import UUID
+
+from sqlalchemy.orm import Session
+
+from app.configuration.environments.platform_service_configurations.schemas import (
+    AzureApiConfig,
+)
+from app.data_output_configuration.azure_api.model import (
+    AzureApiTechnicalAssetConfiguration as AzureApiTechnicalAssetConfigurationModel,
+)
+from app.data_output_configuration.base_schema import (
+    AssetProviderPlugin,
+    PlatformMetadata,
+    UIElementMetadata,
+    UIElementString,
+)
+from app.data_output_configuration.data_output_types import DataOutputTypes
+from app.data_output_configuration.enums import UIElementType
+from app.data_products.schema import DataProduct
+from app.users.schema import User
+
+
+class AzureApiTechnicalAssetConfiguration(AssetProviderPlugin):
+    name: ClassVar[str] = "AzureApiTechnicalAssetConfiguration"
+    version: ClassVar[str] = "1.0"
+
+    api_name: str
+
+    configuration_type: Literal[DataOutputTypes.AzureApiTechnicalAssetConfiguration]
+
+    _platform_metadata = PlatformMetadata(
+        display_name="API",
+        icon_name="azure-api-logo.svg",
+        platform_key="azureapi",
+        parent_platform="azure",
+        result_label="Resulting API",
+        result_tooltip="The API you can access through this technical asset",
+        detailed_name="API",
+    )
+
+    class Meta:
+        orm_model = AzureApiTechnicalAssetConfigurationModel
+
+    def validate_configuration(self, data_product: DataProduct, db: Session):
+        pass
+
+    def on_create(self):
+        pass
+
+    @classmethod
+    def get_url(
+        cls, id: UUID, db: Session, actor: User, environment: Optional[str] = None
+    ) -> str:
+        return "https://portal.azure.com/"
+
+    def get_configuration(
+        self, configs: list[AzureApiConfig]
+    ) -> Optional[AzureApiConfig]:
+        """
+        No filtering on API configuration as there should only be 1 entry per environment.
+        """
+        return next((config for config in configs), None)
+
+    @classmethod
+    def get_ui_metadata(cls, db: Session) -> list[UIElementMetadata]:
+        base_metadata = super().get_ui_metadata(db)
+        base_metadata += [
+            UIElementMetadata(
+                name="api_name",
+                label="API Name",
+                required=True,
+                type=UIElementType.String,
+                string=UIElementString(initial_value=""),
+            ),
+        ]
+        return base_metadata

@@ -2,6 +2,9 @@ import json
 from typing import Sequence
 from uuid import UUID
 
+from app.configuration.environments.platform_service_configurations.schemas.azure_api_schema import (
+    AzureApiConfig,
+)
 from pydantic import field_validator
 
 from app.configuration.environments.platform_service_configurations.schemas import (
@@ -32,6 +35,7 @@ ConfigType = (
     | RedshiftConfig
     | PostgreSQLConfig
     | AzureBlobConfig
+    | AzureApiConfig
 )
 
 
