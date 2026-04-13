@@ -101,6 +101,8 @@ export type ValidationError = {
   loc: (string | number)[];
   msg: string;
   type: string;
+  input?: any;
+  ctx?: object;
 };
 export type HttpValidationError = {
   detail?: ValidationError[];
@@ -144,6 +146,10 @@ export type AzureBlobConfig = {
     [key: string]: string;
   };
 };
+export type AzureApiConfig = {
+  identifier: string;
+  api_manager: string;
+};
 export type Platform = {
   id: string;
   name: string;
@@ -164,6 +170,7 @@ export type EnvironmentConfigsGetItem = {
     | RedshiftConfig
     | PostgreSqlConfig
     | AzureBlobConfig
+    | AzureApiConfig
   )[];
   id: string;
   platform: Platform;

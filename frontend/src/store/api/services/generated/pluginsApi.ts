@@ -128,6 +128,8 @@ export type ValidationError = {
   loc: (string | number)[];
   msg: string;
   type: string;
+  input?: any;
+  ctx?: object;
 };
 export type HttpValidationError = {
   detail?: ValidationError[];
@@ -137,6 +139,12 @@ export type UrlResponse = {
 };
 export type RenderTechnicalAssetAccessPathResponse = {
   technical_asset_access_path: string;
+};
+export type AzureApiTechnicalAssetConfiguration = {
+  configuration_type: "AzureApiTechnicalAssetConfiguration";
+  domain?: string;
+  path?: string;
+  container_name: string;
 };
 export type AzureBlobTechnicalAssetConfiguration = {
   configuration_type: "AzureBlobTechnicalAssetConfiguration";
@@ -206,6 +214,9 @@ export type RenderTechnicalAssetAccessPathRequest = {
   platform_id: string;
   service_id: string;
   configuration:
+    | ({
+        configuration_type: "AzureApiTechnicalAssetConfiguration";
+      } & AzureApiTechnicalAssetConfiguration)
     | ({
         configuration_type: "AzureBlobTechnicalAssetConfiguration";
       } & AzureBlobTechnicalAssetConfiguration)

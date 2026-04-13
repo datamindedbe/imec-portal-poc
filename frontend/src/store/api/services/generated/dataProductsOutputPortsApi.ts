@@ -308,6 +308,8 @@ export type ValidationError = {
   loc: (string | number)[];
   msg: string;
   type: string;
+  input?: any;
+  ctx?: object;
 };
 export type HttpValidationError = {
   detail?: ValidationError[];
@@ -440,6 +442,12 @@ export type OutputPortSettingValue = {
   data_product_setting: DataProductSetting;
   output_port_id: string;
 };
+export type AzureApiTechnicalAssetConfiguration = {
+  configuration_type: "AzureApiTechnicalAssetConfiguration";
+  domain?: string;
+  path?: string;
+  container_name: string;
+};
 export type AzureBlobTechnicalAssetConfiguration = {
   configuration_type: "AzureBlobTechnicalAssetConfiguration";
   domain?: string;
@@ -515,6 +523,9 @@ export type TechnicalAsset = {
   platform_id: string;
   service_id: string;
   configuration:
+    | ({
+        configuration_type: "AzureApiTechnicalAssetConfiguration";
+      } & AzureApiTechnicalAssetConfiguration)
     | ({
         configuration_type: "AzureBlobTechnicalAssetConfiguration";
       } & AzureBlobTechnicalAssetConfiguration)
