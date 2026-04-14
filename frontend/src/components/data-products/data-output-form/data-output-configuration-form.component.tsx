@@ -1,4 +1,4 @@
-import { Checkbox, Form, type FormInstance, Input, Radio, Select } from 'antd';
+import { Checkbox, Form, type FormInstance, Input, InputNumber, Radio, Select } from 'antd';
 import type { Rule } from 'antd/es/form';
 import type { BaseOptionType } from 'antd/es/select';
 import { type ReactElement, useEffect } from 'react';
@@ -74,6 +74,7 @@ export function DataOutputConfigurationForm({
             checkbox,
             select,
             radio,
+            number,
         } = fieldMetadata;
 
         // Check if field should be hidden based on dependencies
@@ -106,6 +107,10 @@ export function DataOutputConfigurationForm({
         // Render the appropriate input component based on type
         let inputComponent: ReactElement;
         switch (type) {
+            case 'number':
+                inputComponent = <InputNumber min={number?.min ?? undefined} max={number?.max ?? undefined} style={{ width: '100%' }} />;
+                break;
+
             case 'checkbox':
                 inputComponent = <Checkbox>{label}</Checkbox>;
                 break;
@@ -160,7 +165,9 @@ export function DataOutputConfigurationForm({
                           ? checkbox?.initial_value
                           : type === 'radio'
                             ? radio?.initial_value
-                            : undefined
+                            : type === 'number'
+                              ? number?.initial_value
+                              : undefined
                 }
                 required={type !== 'checkbox' && required && !isHidden}
             >

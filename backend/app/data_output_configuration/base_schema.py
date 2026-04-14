@@ -59,6 +59,12 @@ class UIElementString(ORMModel):
     initial_value: Optional[str] = None
 
 
+class UIElementNumber(ORMModel):
+    initial_value: Optional[int] = None
+    min: Optional[int] = None
+    max: Optional[int] = None
+
+
 class UIElementMetadata(ORMModel):
     label: str  # The label shown in the UI
     type: UIElementType  # The type of UI element
@@ -72,6 +78,7 @@ class UIElementMetadata(ORMModel):
     select: Optional[UIElementSelect] = None
     string: Optional[UIElementString] = None
     radio: Optional[UIElementRadio] = None
+    number: Optional[UIElementNumber] = None
     depends_on: Optional[list[FieldDependency]] = (
         None  # Conditional rendering based on another field's value in the form.
     )
@@ -90,6 +97,8 @@ class UIElementMetadata(ORMModel):
             self.select = UIElementSelect()
         if self.type == UIElementType.String and self.string is None:
             self.string = UIElementString()
+        if self.type == UIElementType.Number and self.number is None:
+            self.number = UIElementNumber()
         if self.type == UIElementType.Checkbox and self.checkbox is None:
             self.checkbox = UIElementCheckbox()
 
