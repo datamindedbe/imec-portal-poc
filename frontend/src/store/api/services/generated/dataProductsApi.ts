@@ -425,6 +425,10 @@ export type GlueTechnicalAssetConfiguration = {
   table_path?: string;
   access_granularity: AccessGranularity;
 };
+export type ImecSchemaTechnicalAssetConfiguration = {
+  configuration_type: "ImecSchemaTechnicalAssetConfiguration";
+  schema?: string;
+};
 export type OsiSemanticModelTechnicalAssetConfiguration = {
   configuration_type: "OSISemanticModelTechnicalAssetConfiguration";
   model_name?: string;
@@ -486,6 +490,9 @@ export type TechnicalAsset = {
     | ({
         configuration_type: "GlueTechnicalAssetConfiguration";
       } & GlueTechnicalAssetConfiguration)
+    | ({
+        configuration_type: "ImecSchemaTechnicalAssetConfiguration";
+      } & ImecSchemaTechnicalAssetConfiguration)
     | ({
         configuration_type: "OSISemanticModelTechnicalAssetConfiguration";
       } & OsiSemanticModelTechnicalAssetConfiguration)

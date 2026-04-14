@@ -14227,6 +14227,9 @@
               },
               {
                 "$ref": "#/components/schemas/AzureApiTechnicalAssetConfiguration"
+              },
+              {
+                "$ref": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration"
               }
             ],
             "title": "Configuration",
@@ -14237,6 +14240,7 @@
                 "AzureBlobTechnicalAssetConfiguration": "#/components/schemas/AzureBlobTechnicalAssetConfiguration",
                 "DatabricksTechnicalAssetConfiguration": "#/components/schemas/DatabricksTechnicalAssetConfiguration",
                 "GlueTechnicalAssetConfiguration": "#/components/schemas/GlueTechnicalAssetConfiguration",
+                "ImecSchemaTechnicalAssetConfiguration": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration",
                 "OSISemanticModelTechnicalAssetConfiguration": "#/components/schemas/OSISemanticModelTechnicalAssetConfiguration",
                 "PostgreSQLTechnicalAssetConfiguration": "#/components/schemas/PostgreSQLTechnicalAssetConfiguration",
                 "RedshiftTechnicalAssetConfiguration": "#/components/schemas/RedshiftTechnicalAssetConfiguration",
@@ -14371,6 +14375,9 @@
               },
               {
                 "$ref": "#/components/schemas/AzureApiTechnicalAssetConfiguration"
+              },
+              {
+                "$ref": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration"
               }
             ],
             "title": "Configuration",
@@ -14381,6 +14388,7 @@
                 "AzureBlobTechnicalAssetConfiguration": "#/components/schemas/AzureBlobTechnicalAssetConfiguration",
                 "DatabricksTechnicalAssetConfiguration": "#/components/schemas/DatabricksTechnicalAssetConfiguration",
                 "GlueTechnicalAssetConfiguration": "#/components/schemas/GlueTechnicalAssetConfiguration",
+                "ImecSchemaTechnicalAssetConfiguration": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration",
                 "OSISemanticModelTechnicalAssetConfiguration": "#/components/schemas/OSISemanticModelTechnicalAssetConfiguration",
                 "PostgreSQLTechnicalAssetConfiguration": "#/components/schemas/PostgreSQLTechnicalAssetConfiguration",
                 "RedshiftTechnicalAssetConfiguration": "#/components/schemas/RedshiftTechnicalAssetConfiguration",
@@ -14462,6 +14470,9 @@
               },
               {
                 "$ref": "#/components/schemas/AzureApiTechnicalAssetConfiguration"
+              },
+              {
+                "$ref": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration"
               }
             ],
             "title": "Configuration",
@@ -14472,6 +14483,7 @@
                 "AzureBlobTechnicalAssetConfiguration": "#/components/schemas/AzureBlobTechnicalAssetConfiguration",
                 "DatabricksTechnicalAssetConfiguration": "#/components/schemas/DatabricksTechnicalAssetConfiguration",
                 "GlueTechnicalAssetConfiguration": "#/components/schemas/GlueTechnicalAssetConfiguration",
+                "ImecSchemaTechnicalAssetConfiguration": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration",
                 "OSISemanticModelTechnicalAssetConfiguration": "#/components/schemas/OSISemanticModelTechnicalAssetConfiguration",
                 "PostgreSQLTechnicalAssetConfiguration": "#/components/schemas/PostgreSQLTechnicalAssetConfiguration",
                 "RedshiftTechnicalAssetConfiguration": "#/components/schemas/RedshiftTechnicalAssetConfiguration",
@@ -14707,6 +14719,9 @@
               },
               {
                 "$ref": "#/components/schemas/AzureApiTechnicalAssetConfiguration"
+              },
+              {
+                "$ref": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration"
               }
             ],
             "title": "Configuration",
@@ -14717,6 +14732,7 @@
                 "AzureBlobTechnicalAssetConfiguration": "#/components/schemas/AzureBlobTechnicalAssetConfiguration",
                 "DatabricksTechnicalAssetConfiguration": "#/components/schemas/DatabricksTechnicalAssetConfiguration",
                 "GlueTechnicalAssetConfiguration": "#/components/schemas/GlueTechnicalAssetConfiguration",
+                "ImecSchemaTechnicalAssetConfiguration": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration",
                 "OSISemanticModelTechnicalAssetConfiguration": "#/components/schemas/OSISemanticModelTechnicalAssetConfiguration",
                 "PostgreSQLTechnicalAssetConfiguration": "#/components/schemas/PostgreSQLTechnicalAssetConfiguration",
                 "RedshiftTechnicalAssetConfiguration": "#/components/schemas/RedshiftTechnicalAssetConfiguration",
@@ -14920,6 +14936,9 @@
               },
               {
                 "$ref": "#/components/schemas/AzureApiTechnicalAssetConfiguration"
+              },
+              {
+                "$ref": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration"
               }
             ],
             "title": "Configuration",
@@ -14930,6 +14949,7 @@
                 "AzureBlobTechnicalAssetConfiguration": "#/components/schemas/AzureBlobTechnicalAssetConfiguration",
                 "DatabricksTechnicalAssetConfiguration": "#/components/schemas/DatabricksTechnicalAssetConfiguration",
                 "GlueTechnicalAssetConfiguration": "#/components/schemas/GlueTechnicalAssetConfiguration",
+                "ImecSchemaTechnicalAssetConfiguration": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration",
                 "OSISemanticModelTechnicalAssetConfiguration": "#/components/schemas/OSISemanticModelTechnicalAssetConfiguration",
                 "PostgreSQLTechnicalAssetConfiguration": "#/components/schemas/PostgreSQLTechnicalAssetConfiguration",
                 "RedshiftTechnicalAssetConfiguration": "#/components/schemas/RedshiftTechnicalAssetConfiguration",
@@ -15051,6 +15071,9 @@
               },
               {
                 "$ref": "#/components/schemas/AzureApiTechnicalAssetConfiguration"
+              },
+              {
+                "$ref": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration"
               }
             ],
             "title": "Configuration",
@@ -15061,6 +15084,7 @@
                 "AzureBlobTechnicalAssetConfiguration": "#/components/schemas/AzureBlobTechnicalAssetConfiguration",
                 "DatabricksTechnicalAssetConfiguration": "#/components/schemas/DatabricksTechnicalAssetConfiguration",
                 "GlueTechnicalAssetConfiguration": "#/components/schemas/GlueTechnicalAssetConfiguration",
+                "ImecSchemaTechnicalAssetConfiguration": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration",
                 "OSISemanticModelTechnicalAssetConfiguration": "#/components/schemas/OSISemanticModelTechnicalAssetConfiguration",
                 "PostgreSQLTechnicalAssetConfiguration": "#/components/schemas/PostgreSQLTechnicalAssetConfiguration",
                 "RedshiftTechnicalAssetConfiguration": "#/components/schemas/RedshiftTechnicalAssetConfiguration",
@@ -15185,6 +15209,9 @@
               },
               {
                 "$ref": "#/components/schemas/AzureApiTechnicalAssetConfiguration"
+              },
+              {
+                "$ref": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration"
               }
             ],
             "title": "Configuration",
@@ -15195,6 +15222,7 @@
                 "AzureBlobTechnicalAssetConfiguration": "#/components/schemas/AzureBlobTechnicalAssetConfiguration",
                 "DatabricksTechnicalAssetConfiguration": "#/components/schemas/DatabricksTechnicalAssetConfiguration",
                 "GlueTechnicalAssetConfiguration": "#/components/schemas/GlueTechnicalAssetConfiguration",
+                "ImecSchemaTechnicalAssetConfiguration": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration",
                 "OSISemanticModelTechnicalAssetConfiguration": "#/components/schemas/OSISemanticModelTechnicalAssetConfiguration",
                 "PostgreSQLTechnicalAssetConfiguration": "#/components/schemas/PostgreSQLTechnicalAssetConfiguration",
                 "RedshiftTechnicalAssetConfiguration": "#/components/schemas/RedshiftTechnicalAssetConfiguration",
@@ -17031,6 +17059,9 @@
               },
               {
                 "$ref": "#/components/schemas/AzureApiTechnicalAssetConfiguration"
+              },
+              {
+                "$ref": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration"
               }
             ],
             "title": "Configuration",
@@ -17041,6 +17072,7 @@
                 "AzureBlobTechnicalAssetConfiguration": "#/components/schemas/AzureBlobTechnicalAssetConfiguration",
                 "DatabricksTechnicalAssetConfiguration": "#/components/schemas/DatabricksTechnicalAssetConfiguration",
                 "GlueTechnicalAssetConfiguration": "#/components/schemas/GlueTechnicalAssetConfiguration",
+                "ImecSchemaTechnicalAssetConfiguration": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration",
                 "OSISemanticModelTechnicalAssetConfiguration": "#/components/schemas/OSISemanticModelTechnicalAssetConfiguration",
                 "PostgreSQLTechnicalAssetConfiguration": "#/components/schemas/PostgreSQLTechnicalAssetConfiguration",
                 "RedshiftTechnicalAssetConfiguration": "#/components/schemas/RedshiftTechnicalAssetConfiguration",
@@ -18971,6 +19003,9 @@
               },
               {
                 "$ref": "#/components/schemas/AzureApiTechnicalAssetConfiguration"
+              },
+              {
+                "$ref": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration"
               }
             ],
             "title": "Configuration",
@@ -18981,6 +19016,7 @@
                 "AzureBlobTechnicalAssetConfiguration": "#/components/schemas/AzureBlobTechnicalAssetConfiguration",
                 "DatabricksTechnicalAssetConfiguration": "#/components/schemas/DatabricksTechnicalAssetConfiguration",
                 "GlueTechnicalAssetConfiguration": "#/components/schemas/GlueTechnicalAssetConfiguration",
+                "ImecSchemaTechnicalAssetConfiguration": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration",
                 "OSISemanticModelTechnicalAssetConfiguration": "#/components/schemas/OSISemanticModelTechnicalAssetConfiguration",
                 "PostgreSQLTechnicalAssetConfiguration": "#/components/schemas/PostgreSQLTechnicalAssetConfiguration",
                 "RedshiftTechnicalAssetConfiguration": "#/components/schemas/RedshiftTechnicalAssetConfiguration",
@@ -19295,6 +19331,25 @@
         },
         "type": "object",
         "title": "HTTPValidationError"
+      },
+      "ImecSchemaTechnicalAssetConfiguration": {
+        "properties": {
+          "configuration_type": {
+            "type": "string",
+            "const": "ImecSchemaTechnicalAssetConfiguration",
+            "title": "Configuration Type"
+          },
+          "schema": {
+            "type": "string",
+            "title": "Schema",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "configuration_type"
+        ],
+        "title": "ImecSchemaTechnicalAssetConfiguration"
       },
       "InputPort": {
         "properties": {
@@ -20862,6 +20917,9 @@
               },
               {
                 "$ref": "#/components/schemas/AzureApiTechnicalAssetConfiguration"
+              },
+              {
+                "$ref": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration"
               }
             ],
             "title": "Configuration",
@@ -20872,6 +20930,7 @@
                 "AzureBlobTechnicalAssetConfiguration": "#/components/schemas/AzureBlobTechnicalAssetConfiguration",
                 "DatabricksTechnicalAssetConfiguration": "#/components/schemas/DatabricksTechnicalAssetConfiguration",
                 "GlueTechnicalAssetConfiguration": "#/components/schemas/GlueTechnicalAssetConfiguration",
+                "ImecSchemaTechnicalAssetConfiguration": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration",
                 "OSISemanticModelTechnicalAssetConfiguration": "#/components/schemas/OSISemanticModelTechnicalAssetConfiguration",
                 "PostgreSQLTechnicalAssetConfiguration": "#/components/schemas/PostgreSQLTechnicalAssetConfiguration",
                 "RedshiftTechnicalAssetConfiguration": "#/components/schemas/RedshiftTechnicalAssetConfiguration",
@@ -22774,6 +22833,9 @@
               },
               {
                 "$ref": "#/components/schemas/AzureApiTechnicalAssetConfiguration"
+              },
+              {
+                "$ref": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration"
               }
             ],
             "title": "Configuration",
@@ -22784,6 +22846,7 @@
                 "AzureBlobTechnicalAssetConfiguration": "#/components/schemas/AzureBlobTechnicalAssetConfiguration",
                 "DatabricksTechnicalAssetConfiguration": "#/components/schemas/DatabricksTechnicalAssetConfiguration",
                 "GlueTechnicalAssetConfiguration": "#/components/schemas/GlueTechnicalAssetConfiguration",
+                "ImecSchemaTechnicalAssetConfiguration": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration",
                 "OSISemanticModelTechnicalAssetConfiguration": "#/components/schemas/OSISemanticModelTechnicalAssetConfiguration",
                 "PostgreSQLTechnicalAssetConfiguration": "#/components/schemas/PostgreSQLTechnicalAssetConfiguration",
                 "RedshiftTechnicalAssetConfiguration": "#/components/schemas/RedshiftTechnicalAssetConfiguration",
@@ -22880,6 +22943,9 @@
               },
               {
                 "$ref": "#/components/schemas/AzureApiTechnicalAssetConfiguration"
+              },
+              {
+                "$ref": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration"
               }
             ],
             "title": "Configuration",
@@ -22890,6 +22956,7 @@
                 "AzureBlobTechnicalAssetConfiguration": "#/components/schemas/AzureBlobTechnicalAssetConfiguration",
                 "DatabricksTechnicalAssetConfiguration": "#/components/schemas/DatabricksTechnicalAssetConfiguration",
                 "GlueTechnicalAssetConfiguration": "#/components/schemas/GlueTechnicalAssetConfiguration",
+                "ImecSchemaTechnicalAssetConfiguration": "#/components/schemas/ImecSchemaTechnicalAssetConfiguration",
                 "OSISemanticModelTechnicalAssetConfiguration": "#/components/schemas/OSISemanticModelTechnicalAssetConfiguration",
                 "PostgreSQLTechnicalAssetConfiguration": "#/components/schemas/PostgreSQLTechnicalAssetConfiguration",
                 "RedshiftTechnicalAssetConfiguration": "#/components/schemas/RedshiftTechnicalAssetConfiguration",
