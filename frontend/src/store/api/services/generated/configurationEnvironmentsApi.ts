@@ -149,6 +149,7 @@ export type AzureBlobConfig = {
 export type AzureApiConfig = {
   identifier: string;
   api_manager: string;
+  subscription_id: string;
 };
 export type Platform = {
   id: string;

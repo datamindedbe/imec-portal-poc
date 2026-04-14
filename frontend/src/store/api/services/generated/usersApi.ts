@@ -235,9 +235,13 @@ export type TechnicalAssetStatus = "pending" | "active" | "archived";
 export type TechnicalMapping = "default" | "custom";
 export type AzureApiTechnicalAssetConfiguration = {
   configuration_type: "AzureApiTechnicalAssetConfiguration";
-  domain?: string;
-  path?: string;
-  container_name: string;
+  api_name: string;
+  api_type?: string;
+  roles?: string[];
+  rate_limiting_enabled?: boolean;
+  max_replicas?: number | null;
+  max_requests_per_minute?: number | null;
+  base_url?: string | null;
 };
 export type AzureBlobTechnicalAssetConfiguration = {
   configuration_type: "AzureBlobTechnicalAssetConfiguration";

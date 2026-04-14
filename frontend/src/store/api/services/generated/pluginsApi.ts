@@ -87,6 +87,14 @@ export type UiElementRadio = {
   initial_value?: string | null;
   options?: SelectOption[] | null;
 };
+export type UiElementNumber = {
+  initial_value?: number | null;
+  min?: number | null;
+  max?: number | null;
+};
+export type UiElementTags = {
+  initial_value?: string[] | null;
+};
 export type FieldDependency = {
   field_name: string;
   value: any;
@@ -102,6 +110,8 @@ export type UiElementMetadata = {
   select?: UiElementSelect | null;
   string?: UiElementString | null;
   radio?: UiElementRadio | null;
+  number?: UiElementNumber | null;
+  tags?: UiElementTags | null;
   depends_on?: FieldDependency[] | null;
   disabled?: boolean | null;
   use_namespace_when_not_source_aligned?: boolean | null;
@@ -142,9 +152,13 @@ export type RenderTechnicalAssetAccessPathResponse = {
 };
 export type AzureApiTechnicalAssetConfiguration = {
   configuration_type: "AzureApiTechnicalAssetConfiguration";
-  domain?: string;
-  path?: string;
-  container_name: string;
+  api_name: string;
+  api_type?: string;
+  roles?: string[];
+  rate_limiting_enabled?: boolean;
+  max_replicas?: number | null;
+  max_requests_per_minute?: number | null;
+  base_url?: string | null;
 };
 export type AzureBlobTechnicalAssetConfiguration = {
   configuration_type: "AzureBlobTechnicalAssetConfiguration";
@@ -244,7 +258,9 @@ export type RenderTechnicalAssetAccessPathRequest = {
 };
 export enum UIElementType {
   String = "string",
+  Number = "number",
   Select = "select",
+  Tags = "tags",
   Checkbox = "checkbox",
   Radio = "radio",
 }
