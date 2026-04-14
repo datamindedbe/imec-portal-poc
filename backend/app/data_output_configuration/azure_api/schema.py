@@ -11,8 +11,13 @@ from app.data_output_configuration.azure_api.model import (
 )
 from app.data_output_configuration.base_schema import (
     AssetProviderPlugin,
+    FieldDependency,
     PlatformMetadata,
+    SelectOption,
+    UIElementCheckbox,
     UIElementMetadata,
+    UIElementNumber,
+    UIElementRadio,
     UIElementString,
 )
 from app.data_output_configuration.data_output_types import DataOutputTypes
@@ -25,7 +30,11 @@ class AzureApiTechnicalAssetConfiguration(AssetProviderPlugin):
     name: ClassVar[str] = "AzureApiTechnicalAssetConfiguration"
     version: ClassVar[str] = "1.0"
 
-    api_name: str
+    api_type: str = "Platform-managed"
+    rate_limiting_enabled: bool = True
+    max_replicas: Optional[int] = None
+    max_requests_per_minute: Optional[int] = None
+    base_url: Optional[str] = None
 
     configuration_type: Literal[DataOutputTypes.AzureApiTechnicalAssetConfiguration]
 
@@ -67,11 +76,48 @@ class AzureApiTechnicalAssetConfiguration(AssetProviderPlugin):
         base_metadata = super().get_ui_metadata(db)
         base_metadata += [
             UIElementMetadata(
-                name="api_name",
-                label="API Name",
+                name="api_type",
+                label="Type",
                 required=True,
+                type=UIElementType.Radio,
+                radio=UIElementRadio(
+                    initial_value="Platform-managed",
+                    options=[
+                        SelectOption(label="Platform-managed", value="Platform-managed"),
+                        SelectOption(label="External", value="External"),
+                    ],
+                ),
+            ),
+            UIElementMetadata(
+                name="rate_limiting_enabled",
+                label="Rate Limiting Enabled",
+                required=False,
+                type=UIElementType.Checkbox,
+                checkbox=UIElementCheckbox(initial_value=True),
+            ),
+            UIElementMetadata(
+                name="max_replicas",
+                label="Max Replicas",
+                required=False,
+                type=UIElementType.Number,
+                number=UIElementNumber(min=1),
+                depends_on=[FieldDependency(field_name="api_type", value="Platform-managed")],
+            ),
+            UIElementMetadata(
+                name="max_requests_per_minute",
+                label="Max Requests per Minute",
+                required=False,
+                type=UIElementType.Number,
+                number=UIElementNumber(min=1),
+                depends_on=[FieldDependency(field_name="rate_limiting_enabled", value=True)],
+            ),
+            UIElementMetadata(
+                name="base_url",
+                label="Base URL",
+                required=False,
                 type=UIElementType.String,
                 string=UIElementString(initial_value=""),
+                depends_on=[FieldDependency(field_name="api_type", value="External")],
             ),
         ]
         return base_metadata
