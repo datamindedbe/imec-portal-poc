@@ -5,6 +5,7 @@ class UIElementType(str, Enum):
     String = "string"
     Number = "number"
     Select = "select"
+    Tags = "tags"
     Checkbox = "checkbox"
     Radio = "radio"
 

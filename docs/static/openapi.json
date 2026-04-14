@@ -13561,12 +13561,17 @@
           "api_manager": {
             "type": "string",
             "title": "Api Manager"
+          },
+          "subscription_id": {
+            "type": "string",
+            "title": "Subscription Id"
           }
         },
         "type": "object",
         "required": [
           "identifier",
-          "api_manager"
+          "api_manager",
+          "subscription_id"
         ],
         "title": "AzureApiConfig"
       },
@@ -13577,25 +13582,66 @@
             "const": "AzureApiTechnicalAssetConfiguration",
             "title": "Configuration Type"
           },
-          "domain": {
+          "api_name": {
             "type": "string",
-            "title": "Domain",
-            "default": ""
+            "title": "Api Name"
           },
-          "path": {
+          "api_type": {
             "type": "string",
-            "title": "Path",
-            "default": ""
+            "title": "Api Type",
+            "default": "Platform-managed"
           },
-          "container_name": {
-            "type": "string",
-            "title": "Container Name"
+          "roles": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Roles",
+            "default": []
+          },
+          "rate_limiting_enabled": {
+            "type": "boolean",
+            "title": "Rate Limiting Enabled",
+            "default": true
+          },
+          "max_replicas": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Replicas"
+          },
+          "max_requests_per_minute": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Requests Per Minute"
+          },
+          "base_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Base Url"
           }
         },
         "type": "object",
         "required": [
           "configuration_type",
-          "container_name"
+          "api_name"
         ],
         "title": "AzureApiTechnicalAssetConfiguration"
       },
@@ -21700,6 +21746,26 @@
               }
             ]
           },
+          "number": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UIElementNumber"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "tags": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UIElementTags"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "depends_on": {
             "anyOf": [
               {
@@ -21833,6 +21899,45 @@
         ],
         "title": "UIElementMetadataResponse"
       },
+      "UIElementNumber": {
+        "properties": {
+          "initial_value": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Initial Value"
+          },
+          "min": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Min"
+          },
+          "max": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max"
+          }
+        },
+        "type": "object",
+        "title": "UIElementNumber"
+      },
       "UIElementRadio": {
         "properties": {
           "max_count": {
@@ -21925,11 +22030,33 @@
         "type": "object",
         "title": "UIElementString"
       },
+      "UIElementTags": {
+        "properties": {
+          "initial_value": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Initial Value"
+          }
+        },
+        "type": "object",
+        "title": "UIElementTags"
+      },
       "UIElementType": {
         "type": "string",
         "enum": [
           "string",
+          "number",
           "select",
+          "tags",
           "checkbox",
           "radio"
         ],
