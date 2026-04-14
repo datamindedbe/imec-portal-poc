@@ -3,6 +3,9 @@ from typing import Annotated, Union
 from app.data_output_configuration.azure_api.schema import (
     AzureApiTechnicalAssetConfiguration,
 )
+from app.data_output_configuration.imec_schema.schema import (
+    ImecSchemaTechnicalAssetConfiguration,
+)
 from pydantic import Field
 
 from app.data_output_configuration.azure_blob.schema import (
@@ -37,6 +40,7 @@ DataOutputs = Union[
     OSISemanticModelTechnicalAssetConfiguration,
     AzureBlobTechnicalAssetConfiguration,
     AzureApiTechnicalAssetConfiguration,
+    ImecSchemaTechnicalAssetConfiguration,
 ]
 
 DataOutputMap = {
@@ -49,6 +53,7 @@ DataOutputMap = {
     DataOutputTypes.OSISemanticModelTechnicalAssetConfiguration: OSISemanticModelTechnicalAssetConfiguration,
     DataOutputTypes.AzureBlobTechnicalAssetConfiguration: AzureBlobTechnicalAssetConfiguration,
     DataOutputTypes.AzureApiTechnicalAssetConfiguration: AzureApiTechnicalAssetConfiguration,
+    DataOutputTypes.ImecSchemaTechnicalAssetConfiguration: ImecSchemaTechnicalAssetConfiguration,
 }
 
 DataOutputConfiguration = Annotated[

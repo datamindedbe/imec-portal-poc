@@ -13,3 +13,4 @@ class DataOutputTypes(str, Enum):
         "OSISemanticModelTechnicalAssetConfiguration"
     )
     AzureApiTechnicalAssetConfiguration = "AzureApiTechnicalAssetConfiguration"
+    ImecSchemaTechnicalAssetConfiguration = "ImecSchemaTechnicalAssetConfiguration"
