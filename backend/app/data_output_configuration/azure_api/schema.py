@@ -1,6 +1,7 @@
-from typing import ClassVar, Literal, Optional
+from typing import Any, ClassVar, Literal, Optional
 from uuid import UUID
 
+from pydantic import field_validator
 from sqlalchemy.orm import Session
 
 from app.configuration.environments.platform_service_configurations.schemas import (
@@ -19,6 +20,7 @@ from app.data_output_configuration.base_schema import (
     UIElementNumber,
     UIElementRadio,
     UIElementString,
+
 )
 
 from app.data_output_configuration.data_output_types import DataOutputTypes
@@ -33,6 +35,21 @@ class AzureApiTechnicalAssetConfiguration(AssetProviderPlugin):
 
     api_name: str
     api_type: str = "Platform-managed"
+    roles: list[str] = []
+
+    @field_validator("max_replicas", "max_requests_per_minute", mode="before")
+    @classmethod
+    def coerce_empty_string_to_none(cls, v: Any) -> Any:
+        if v == "":
+            return None
+        return v
+
+    @field_validator("roles", mode="before")
+    @classmethod
+    def coerce_roles_to_list(cls, v: Any) -> list[str]:
+        if isinstance(v, str):
+            return [v]
+        return v or []
     rate_limiting_enabled: bool = True
     max_replicas: Optional[int] = None
     max_requests_per_minute: Optional[int] = None
@@ -103,6 +120,14 @@ class AzureApiTechnicalAssetConfiguration(AssetProviderPlugin):
                 required=False,
                 type=UIElementType.Checkbox,
                 checkbox=UIElementCheckbox(initial_value=True),
+            ),
+            UIElementMetadata(
+                name="roles",
+                label="Roles (comma-separated)",
+                required=False,
+                type=UIElementType.String,
+                string=UIElementString(initial_value=""),
+                depends_on=[FieldDependency(field_name="api_type", value="Platform-managed")],
             ),
             UIElementMetadata(
                 name="max_replicas",

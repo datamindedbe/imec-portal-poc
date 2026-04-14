@@ -32,6 +32,7 @@ def upgrade() -> None:
         sa.Column("api_name", sa.String(), nullable=False),
         sa.Column("api_type", sa.String(), nullable=False, server_default="Platform-managed"),
         sa.Column("rate_limiting_enabled", sa.Boolean(), nullable=False, server_default="true"),
+        sa.Column("roles", sa.JSON(), nullable=True),
         sa.Column("max_replicas", sa.Integer(), nullable=True),
         sa.Column("max_requests_per_minute", sa.Integer(), nullable=True),
         sa.Column("base_url", sa.String(), nullable=True),

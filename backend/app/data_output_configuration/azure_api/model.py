@@ -1,6 +1,6 @@
 from typing import Optional
 
-from sqlalchemy import Boolean, Integer, String
+from sqlalchemy import JSON, Boolean, Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.data_output_configuration.base_model import BaseTechnicalAssetConfiguration
@@ -12,6 +12,7 @@ class AzureApiTechnicalAssetConfiguration(BaseTechnicalAssetConfiguration):
     api_name: Mapped[str] = mapped_column(String, nullable=False)
     api_type: Mapped[str] = mapped_column(String, nullable=False, default="Platform-managed")
     rate_limiting_enabled: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
+    roles: Mapped[Optional[list]] = mapped_column(JSON, nullable=True)
     max_replicas: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
     max_requests_per_minute: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
     base_url: Mapped[Optional[str]] = mapped_column(String, nullable=True)
