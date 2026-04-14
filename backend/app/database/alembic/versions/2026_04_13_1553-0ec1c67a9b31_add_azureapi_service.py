@@ -37,7 +37,7 @@ def upgrade() -> None:
         ),
         {
             "platform_id": azure_id,
-            "result_template": "Azure API",
+            "result_template": "{api_name}",
             "technical_info_template": "https://portal.azure.com/#@ImecInternational.onmicrosoft.com/resource/subscriptions/{subscription_id}/resourceGroups/rg-adp-common/providers/Microsoft.ApiManagement/service/{api_manager}/overview",
         },
     )

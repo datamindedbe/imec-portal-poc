@@ -9,6 +9,7 @@ from app.data_output_configuration.base_model import BaseTechnicalAssetConfigura
 class AzureApiTechnicalAssetConfiguration(BaseTechnicalAssetConfiguration):
     __tablename__ = "azure_api_technical_asset_configurations"
 
+    api_name: Mapped[str] = mapped_column(String, nullable=False)
     api_type: Mapped[str] = mapped_column(String, nullable=False, default="Platform-managed")
     rate_limiting_enabled: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
     max_replicas: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)

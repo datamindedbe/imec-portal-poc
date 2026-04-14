@@ -20,6 +20,7 @@ from app.data_output_configuration.base_schema import (
     UIElementRadio,
     UIElementString,
 )
+
 from app.data_output_configuration.data_output_types import DataOutputTypes
 from app.data_output_configuration.enums import UIElementType
 from app.data_products.schema import DataProduct
@@ -30,6 +31,7 @@ class AzureApiTechnicalAssetConfiguration(AssetProviderPlugin):
     name: ClassVar[str] = "AzureApiTechnicalAssetConfiguration"
     version: ClassVar[str] = "1.0"
 
+    api_name: str
     api_type: str = "Platform-managed"
     rate_limiting_enabled: bool = True
     max_replicas: Optional[int] = None
@@ -75,6 +77,13 @@ class AzureApiTechnicalAssetConfiguration(AssetProviderPlugin):
     def get_ui_metadata(cls, db: Session) -> list[UIElementMetadata]:
         base_metadata = super().get_ui_metadata(db)
         base_metadata += [
+            UIElementMetadata(
+                name="api_name",
+                label="API Name",
+                required=True,
+                type=UIElementType.String,
+                string=UIElementString(initial_value=""),
+            ),
             UIElementMetadata(
                 name="api_type",
                 label="Type",

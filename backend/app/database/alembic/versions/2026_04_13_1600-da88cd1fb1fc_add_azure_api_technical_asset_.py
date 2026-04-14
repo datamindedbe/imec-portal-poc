@@ -29,6 +29,7 @@ def upgrade() -> None:
             sa.ForeignKey("data_output_configurations.id", ondelete="CASCADE"),
             primary_key=True,
         ),
+        sa.Column("api_name", sa.String(), nullable=False),
         sa.Column("api_type", sa.String(), nullable=False, server_default="Platform-managed"),
         sa.Column("rate_limiting_enabled", sa.Boolean(), nullable=False, server_default="true"),
         sa.Column("max_replicas", sa.Integer(), nullable=True),
