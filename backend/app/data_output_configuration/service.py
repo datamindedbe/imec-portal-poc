@@ -80,6 +80,7 @@ class PluginService:
                 result_tooltip=platform_meta.result_tooltip,
                 detailed_name=platform_meta.detailed_name,
                 show_in_form=platform_meta.show_in_form,
+                link_parameter_label=platform_meta.link_parameter_label,
             )
         except NotImplementedError:
             return UIElementMetadataResponse(
@@ -95,6 +96,7 @@ class PluginService:
                 result_tooltip=platform_meta.result_tooltip,
                 detailed_name=platform_meta.detailed_name,
                 has_environments=platform_meta.has_environments,
+                link_parameter_label=platform_meta.link_parameter_label,
             )
 
     def get_platform_tiles(

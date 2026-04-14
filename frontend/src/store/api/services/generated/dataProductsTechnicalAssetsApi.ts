@@ -216,6 +216,7 @@ export type LinkTechnicalAssetsToOutputPortResponse = {
 };
 export type LinkTechnicalAssetToOutputPortRequest = {
   technical_asset_id: string;
+  link_parameter?: string | null;
 };
 export type UnLinkTechnicalAssetToOutputPortRequest = {
   technical_asset_id: string;
@@ -327,6 +328,7 @@ export type OutputPortLink = {
   output_port_id: string;
   technical_asset_id: string;
   status: DecisionStatus;
+  link_parameter?: string | null;
   output: OutputPort;
 };
 export type GetTechnicalAssetsResponseItem = {
@@ -420,6 +422,8 @@ export type GetTechnicalAssetsResponseItemRead = {
   /** DEPRECATED: Use 'technical_mapping' instead. This field will be removed in a future version. */
   sourceAligned: boolean;
   result_string: string;
+  link_parameter_label: string | null;
+  link_parameter_options: string[];
   technical_info: TechnicalInfo[];
 };
 export type GetTechnicalAssetsResponse = {

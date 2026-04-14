@@ -109,7 +109,13 @@ export function DataOutputConfigurationForm({
         let inputComponent: ReactElement;
         switch (type) {
             case 'number':
-                inputComponent = <InputNumber min={number?.min ?? undefined} max={number?.max ?? undefined} style={{ width: '100%' }} />;
+                inputComponent = (
+                    <InputNumber
+                        min={number?.min ?? undefined}
+                        max={number?.max ?? undefined}
+                        style={{ width: '100%' }}
+                    />
+                );
                 break;
 
             case 'tags':
@@ -125,9 +131,9 @@ export function DataOutputConfigurationForm({
                     use_namespace_when_not_source_aligned && technical_mapping === 'default'
                         ? [namespace].map((val) => ({ label: val, value: val }))
                         : (select?.options?.map((option) => ({
-                            label: option.label,
-                            value: option.value.toString(),
-                        })) ?? []);
+                              label: option.label,
+                              value: option.value.toString(),
+                          })) ?? []);
                 const maxCountGreaterThanOne = select?.max_count ? select?.max_count > 1 : false;
                 inputComponent = (
                     <Select
@@ -167,14 +173,14 @@ export function DataOutputConfigurationForm({
                     type === 'string'
                         ? string?.initial_value
                         : type === 'checkbox'
-                            ? checkbox?.initial_value
-                            : type === 'radio'
-                                ? radio?.initial_value
-                                : type === 'number'
-                                    ? number?.initial_value
-                                    : type === 'tags'
-                                        ? tags?.initial_value
-                                        : undefined
+                          ? checkbox?.initial_value
+                          : type === 'radio'
+                            ? radio?.initial_value
+                            : type === 'number'
+                              ? number?.initial_value
+                              : type === 'tags'
+                                ? tags?.initial_value
+                                : undefined
                 }
                 required={type !== 'checkbox' && required && !isHidden}
             >

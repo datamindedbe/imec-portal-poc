@@ -36,6 +36,7 @@ class BaseTechnicalAssetOutputPortAssociationGet(ORMModel):
     requested_on: datetime
     denied_on: Optional[datetime]
     approved_on: Optional[datetime]
+    link_parameter: Optional[str] = None
 
     # Nested schemas
     requested_by: User
@@ -51,6 +52,7 @@ class BaseDataOutputDatasetAssociationGet(ORMModel):
     requested_on: datetime
     denied_on: Optional[datetime]
     approved_on: Optional[datetime]
+    link_parameter: Optional[str] = None
 
     # Nested schemas
     dataset: Dataset
@@ -69,6 +71,7 @@ class BaseDataOutputDatasetAssociationGet(ORMModel):
             technical_asset_id=self.data_output_id,
             output_port=self.dataset.convert(),
             technical_asset=self.data_output.convert(),
+            link_parameter=self.link_parameter,
         )
 
 

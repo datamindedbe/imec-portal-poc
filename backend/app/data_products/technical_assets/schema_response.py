@@ -59,6 +59,14 @@ class BaseTechnicalAssetGet(ORMModel):
         return self.configuration.render_template(self.service.result_string_template)
 
     @computed_field
+    def link_parameter_label(self) -> Optional[str]:
+        return self.configuration.get_platform_metadata().link_parameter_label
+
+    @computed_field
+    def link_parameter_options(self) -> list[str]:
+        return self.configuration.get_link_parameter_options()
+
+    @computed_field
     def technical_info(self) -> list[TechnicalInfo]:
         technical_info_list = []
         for environment_configuration in self.environment_configurations:

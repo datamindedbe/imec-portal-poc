@@ -1,4 +1,4 @@
-import { Button, Checkbox, Flex, Input, List, Modal, Typography } from 'antd';
+import { Button, Checkbox, Flex, Input, List, Modal, Select, Typography } from 'antd';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -26,6 +26,7 @@ type Props = {
 export function DataOutputLinkModal({ onClose, dataProductId, datasetId, datasetName, existingLinks }: Props) {
     const { t } = useTranslation();
     const [selectedOutputs, setSelectedOutputs] = useState<Set<string>>(new Set());
+    const [linkParameters, setLinkParameters] = useState<Map<string, string>>(new Map());
 
     const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined);
     const { data: { plugins } = {} } = useGetPluginsQuery();
@@ -63,6 +64,11 @@ export function DataOutputLinkModal({ onClose, dataProductId, datasetId, dataset
             const newSet = new Set(prev);
             if (newSet.has(outputId)) {
                 newSet.delete(outputId);
+                setLinkParameters((params) => {
+                    const newParams = new Map(params);
+                    newParams.delete(outputId);
+                    return newParams;
+                });
             } else {
                 newSet.add(outputId);
             }
@@ -73,10 +79,26 @@ export function DataOutputLinkModal({ onClose, dataProductId, datasetId, dataset
     const handleSelectAll = () => {
         if (selectedOutputs.size === filteredDataOutputs.length) {
             setSelectedOutputs(new Set());
+            setLinkParameters(new Map());
         } else {
             setSelectedOutputs(new Set(filteredDataOutputs.map((output) => output.id)));
         }
     };
+
+    const isSubmitDisabled = useMemo(() => {
+        if (selectedOutputs.size === 0) return true;
+        for (const outputId of selectedOutputs) {
+            const asset = technicalAssets.find((a) => a.id === outputId);
+            if (
+                asset?.link_parameter_options &&
+                asset.link_parameter_options.length > 0 &&
+                !linkParameters.get(outputId)
+            ) {
+                return true;
+            }
+        }
+        return false;
+    }, [selectedOutputs, linkParameters, technicalAssets]);
 
     const handleSubmit = async () => {
         try {
@@ -86,6 +108,7 @@ export function DataOutputLinkModal({ onClose, dataProductId, datasetId, dataset
                     outputPortId: datasetId,
                     linkTechnicalAssetToOutputPortRequest: {
                         technical_asset_id: outputId,
+                        link_parameter: linkParameters.get(outputId) ?? null,
                     },
                 }).unwrap();
                 await approveLink({
@@ -106,6 +129,7 @@ export function DataOutputLinkModal({ onClose, dataProductId, datasetId, dataset
             });
 
             setSelectedOutputs(new Set());
+            setLinkParameters(new Map());
             onClose();
         } catch (_error) {
             dispatchMessage({
@@ -130,7 +154,7 @@ export function DataOutputLinkModal({ onClose, dataProductId, datasetId, dataset
                     type="primary"
                     onClick={handleSubmit}
                     loading={isLinking}
-                    disabled={selectedOutputs.size === 0}
+                    disabled={isSubmitDisabled}
                 >
                     {t('Link {{count}} assets', { count: selectedOutputs.size })}
                 </Button>,
@@ -168,23 +192,50 @@ export function DataOutputLinkModal({ onClose, dataProductId, datasetId, dataset
                     onChange: handleCurrentPageChange,
                 }}
                 locale={{ emptyText: t('No Technical Assets available') }}
-                renderItem={(output) => (
-                    <List.Item>
-                        <Flex align="center" gap={12} style={{ width: '100%' }}>
-                            <Checkbox
-                                checked={selectedOutputs.has(output.id)}
-                                onChange={() => handleOutputToggle(output.id)}
-                            />
-                            <CustomSvgIconLoader
-                                iconComponent={getDataOutputIcon(output.configuration.configuration_type, plugins)}
-                            />
-                            <Flex vertical style={{ flex: 1 }}>
-                                <Typography.Text strong>{output.result_string}</Typography.Text>
-                                <Typography.Text type="secondary">{output.name}</Typography.Text>
+                renderItem={(output) => {
+                    const isSelected = selectedOutputs.has(output.id);
+                    const hasParameter = output.link_parameter_options && output.link_parameter_options.length > 0;
+                    return (
+                        <List.Item>
+                            <Flex vertical style={{ width: '100%' }} gap={8}>
+                                <Flex align="center" gap={12} style={{ width: '100%' }}>
+                                    <Checkbox checked={isSelected} onChange={() => handleOutputToggle(output.id)} />
+                                    <CustomSvgIconLoader
+                                        iconComponent={getDataOutputIcon(
+                                            output.configuration.configuration_type,
+                                            plugins,
+                                        )}
+                                    />
+                                    <Flex vertical style={{ flex: 1 }}>
+                                        <Typography.Text strong>{output.result_string}</Typography.Text>
+                                        <Typography.Text type="secondary">{output.name}</Typography.Text>
+                                    </Flex>
+                                </Flex>
+                                {isSelected && hasParameter && (
+                                    <Flex align="center" gap={8} style={{ paddingLeft: 36 }}>
+                                        <Typography.Text type="secondary" style={{ whiteSpace: 'nowrap' }}>
+                                            {output.link_parameter_label ?? t('Parameter')}:
+                                        </Typography.Text>
+                                        <Select
+                                            style={{ flex: 1 }}
+                                            placeholder={t('Select {{label}}', {
+                                                label: output.link_parameter_label ?? t('parameter'),
+                                            })}
+                                            value={linkParameters.get(output.id)}
+                                            onChange={(value) =>
+                                                setLinkParameters((prev) => new Map(prev).set(output.id, value))
+                                            }
+                                            options={output.link_parameter_options?.map((opt) => ({
+                                                label: opt,
+                                                value: opt,
+                                            }))}
+                                        />
+                                    </Flex>
+                                )}
                             </Flex>
-                        </Flex>
-                    </List.Item>
-                )}
+                        </List.Item>
+                    );
+                }}
             />
         </Modal>
     );

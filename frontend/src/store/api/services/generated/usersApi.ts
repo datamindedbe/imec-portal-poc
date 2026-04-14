@@ -358,6 +358,7 @@ export type TechnicalAssetOutputPortPendingAction = {
   requested_on: string;
   denied_on: string | null;
   approved_on: string | null;
+  link_parameter?: string | null;
   requested_by: User;
   denied_by: User | null;
   approved_by: User | null;

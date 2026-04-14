@@ -130,6 +130,7 @@ export type UiElementMetadataResponse = {
   platform_tile?: PlatformTile | null;
   show_in_form?: boolean;
   detailed_name: string;
+  link_parameter_label?: string | null;
 };
 export type PluginResponse = {
   plugins: UiElementMetadataResponse[];

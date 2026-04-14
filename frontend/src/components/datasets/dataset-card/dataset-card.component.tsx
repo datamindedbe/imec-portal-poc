@@ -1,4 +1,4 @@
-import { Badge, Button, Card, Collapse, Flex, List, Popconfirm, Typography } from 'antd';
+import { Badge, Button, Card, Collapse, Flex, List, Popconfirm, Tag, Typography } from 'antd';
 import { type DragEvent, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
@@ -281,6 +281,9 @@ export function DatasetCard({ datasetId, dataProductId, draggedDataOutputId }: P
                                                             <Typography.Text>
                                                                 {link.technical_asset.name}
                                                             </Typography.Text>
+                                                            {link.link_parameter && (
+                                                                <Tag color="blue">{link.link_parameter}</Tag>
+                                                            )}
                                                         </Flex>
                                                         <Button
                                                             type="text"

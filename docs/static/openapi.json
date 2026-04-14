@@ -13767,6 +13767,17 @@
             ],
             "title": "Approved On"
           },
+          "link_parameter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Parameter"
+          },
           "dataset": {
             "$ref": "#/components/schemas/Dataset"
           },
@@ -14563,6 +14574,17 @@
             ],
             "title": "Approved On"
           },
+          "link_parameter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Parameter"
+          },
           "dataset": {
             "$ref": "#/components/schemas/Dataset"
           },
@@ -14731,6 +14753,26 @@
             "title": "Result String",
             "readOnly": true
           },
+          "link_parameter_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Parameter Label",
+            "readOnly": true
+          },
+          "link_parameter_options": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Link Parameter Options",
+            "readOnly": true
+          },
           "technical_info": {
             "items": {
               "$ref": "#/components/schemas/TechnicalInfo"
@@ -14757,6 +14799,8 @@
           "tags",
           "sourceAligned",
           "result_string",
+          "link_parameter_label",
+          "link_parameter_options",
           "technical_info"
         ],
         "title": "DataOutputGet",
@@ -14781,6 +14825,17 @@
           },
           "status": {
             "$ref": "#/components/schemas/DecisionStatus"
+          },
+          "link_parameter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Parameter"
           },
           "data_output": {
             "$ref": "#/components/schemas/DatasetDataOutput"
@@ -14904,6 +14959,26 @@
             "title": "Result String",
             "readOnly": true
           },
+          "link_parameter_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Parameter Label",
+            "readOnly": true
+          },
+          "link_parameter_options": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Link Parameter Options",
+            "readOnly": true
+          },
           "technical_info": {
             "items": {
               "$ref": "#/components/schemas/TechnicalInfo"
@@ -14929,6 +15004,8 @@
           "dataset_links",
           "sourceAligned",
           "result_string",
+          "link_parameter_label",
+          "link_parameter_options",
           "technical_info"
         ],
         "title": "DataOutputLinks",
@@ -15154,6 +15231,26 @@
             "title": "Result String",
             "readOnly": true
           },
+          "link_parameter_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Parameter Label",
+            "readOnly": true
+          },
+          "link_parameter_options": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Link Parameter Options",
+            "readOnly": true
+          },
           "technical_info": {
             "items": {
               "$ref": "#/components/schemas/TechnicalInfo"
@@ -15180,6 +15277,8 @@
           "tags",
           "sourceAligned",
           "result_string",
+          "link_parameter_label",
+          "link_parameter_options",
           "technical_info"
         ],
         "title": "DataOutputsGet",
@@ -17115,6 +17214,17 @@
           "status": {
             "$ref": "#/components/schemas/DecisionStatus"
           },
+          "link_parameter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Parameter"
+          },
           "dataset": {
             "$ref": "#/components/schemas/Dataset"
           }
@@ -18907,6 +19017,26 @@
             "title": "Result String",
             "readOnly": true
           },
+          "link_parameter_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Parameter Label",
+            "readOnly": true
+          },
+          "link_parameter_options": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Link Parameter Options",
+            "readOnly": true
+          },
           "technical_info": {
             "items": {
               "$ref": "#/components/schemas/TechnicalInfo"
@@ -18933,6 +19063,8 @@
           "tags",
           "sourceAligned",
           "result_string",
+          "link_parameter_label",
+          "link_parameter_options",
           "technical_info"
         ],
         "title": "GetTechnicalAssetsResponseItem"
@@ -19317,6 +19449,17 @@
             "type": "string",
             "format": "uuid",
             "title": "Technical Asset Id"
+          },
+          "link_parameter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Parameter"
           }
         },
         "type": "object",
@@ -20065,6 +20208,17 @@
           },
           "status": {
             "$ref": "#/components/schemas/DecisionStatus"
+          },
+          "link_parameter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Parameter"
           },
           "output": {
             "$ref": "#/components/schemas/OutputPort"
@@ -21473,6 +21627,17 @@
           "status": {
             "$ref": "#/components/schemas/DecisionStatus"
           },
+          "link_parameter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Parameter"
+          },
           "technical_asset": {
             "$ref": "#/components/schemas/app__data_products__technical_assets__schema__TechnicalAsset"
           }
@@ -21541,6 +21706,17 @@
               }
             ],
             "title": "Approved On"
+          },
+          "link_parameter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Parameter"
           },
           "requested_by": {
             "$ref": "#/components/schemas/User"
@@ -21885,6 +22061,17 @@
           "detailed_name": {
             "type": "string",
             "title": "Detailed Name"
+          },
+          "link_parameter_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Parameter Label"
           }
         },
         "type": "object",

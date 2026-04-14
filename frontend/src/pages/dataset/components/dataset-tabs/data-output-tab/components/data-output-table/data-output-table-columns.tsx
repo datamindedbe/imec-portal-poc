@@ -1,4 +1,4 @@
-import { Badge, Button, Flex, Popconfirm, type TableColumnsType } from 'antd';
+import { Badge, Button, Flex, Popconfirm, type TableColumnsType, Tag } from 'antd';
 import type { TFunction } from 'i18next';
 
 import { CustomSvgIconLoader } from '@/components/icons/custom-svg-icon-loader/custom-svg-icon-loader.component.tsx';
@@ -72,6 +72,11 @@ export const getDatasetDataProductsColumns = ({
                 );
             },
             width: '100%',
+        },
+        {
+            title: t('Role'),
+            key: 'link_parameter',
+            render: (_, { link_parameter }) => (link_parameter ? <Tag color="blue">{link_parameter}</Tag> : null),
         },
         {
             title: t('Actions'),

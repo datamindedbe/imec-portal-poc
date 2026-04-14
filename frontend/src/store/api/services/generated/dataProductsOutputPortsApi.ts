@@ -560,6 +560,7 @@ export type TechnicalAssetLink = {
   output_port_id: string;
   technical_asset_id: string;
   status: DecisionStatus;
+  link_parameter?: string | null;
   technical_asset: TechnicalAsset;
 };
 export type GetOutputPortResponse = {

@@ -1,5 +1,5 @@
 import { HolderOutlined } from '@ant-design/icons';
-import { Badge, Button, Card, Collapse, Flex, List, Popconfirm, Tooltip, Typography } from 'antd';
+import { Badge, Button, Card, Collapse, Flex, List, Popconfirm, Tag, Tooltip, Typography } from 'antd';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
@@ -217,6 +217,9 @@ export function TechnicalAssetCard({ technicalAsset, dataProductId, onDragStart,
                                                                 size="small"
                                                             />
                                                             <Typography.Text>{link.output.name}</Typography.Text>
+                                                            {link.link_parameter && (
+                                                                <Tag color="blue">{link.link_parameter}</Tag>
+                                                            )}
                                                         </Flex>
                                                         <Button
                                                             type="text"

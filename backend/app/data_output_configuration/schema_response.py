@@ -30,6 +30,7 @@ class UIElementMetadataResponse(ORMModel):
     platform_tile: Optional[PlatformTile] = None  # Complete tile structure
     show_in_form: bool = True  # Whether to show this platform in the configuration form, can be set to False for platforms that are only meant to be shown as tiles without detailed configuration options
     detailed_name: str
+    link_parameter_label: Optional[str] = None
 
 
 class PluginResponse(ORMModel):

@@ -48,7 +48,7 @@ class AzureApiTechnicalAssetConfiguration(AssetProviderPlugin):
     @classmethod
     def coerce_roles_to_list(cls, v: Any) -> list[str]:
         if isinstance(v, str):
-            return [v]
+            return [r.strip() for r in v.split(",") if r.strip()]
         return v or []
     rate_limiting_enabled: bool = True
     max_replicas: Optional[int] = None
@@ -65,7 +65,11 @@ class AzureApiTechnicalAssetConfiguration(AssetProviderPlugin):
         result_label="Resulting API",
         result_tooltip="The API you can access through this technical asset",
         detailed_name="API",
+        link_parameter_label="Role",
     )
+
+    def get_link_parameter_options(self) -> list[str]:
+        return self.roles
 
     class Meta:
         orm_model = AzureApiTechnicalAssetConfigurationModel

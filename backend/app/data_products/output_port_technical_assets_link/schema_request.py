@@ -1,3 +1,4 @@
+from typing import Optional
 from uuid import UUID
 
 from app.shared.schema import ORMModel
@@ -13,6 +14,7 @@ class DenyLinkBetweenTechnicalAssetAndOutputPortRequest(ORMModel):
 
 class LinkTechnicalAssetToOutputPortRequest(ORMModel):
     technical_asset_id: UUID
+    link_parameter: Optional[str] = None
 
 
 class UnLinkTechnicalAssetToOutputPortRequest(ORMModel):

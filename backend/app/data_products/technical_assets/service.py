@@ -1,6 +1,6 @@
 import copy
 from datetime import datetime
-from typing import Sequence
+from typing import Optional, Sequence
 from uuid import UUID
 
 import pytz
@@ -181,6 +181,7 @@ class DataOutputService:
         dataset_id: UUID,
         *,
         actor: User,
+        link_parameter: Optional[str] = None,
     ) -> DataOutputDatasetAssociationModel:
         dataset = ensure_output_port_exists(
             dataset_id,
@@ -211,6 +212,7 @@ class DataOutputService:
             status=DecisionStatus.PENDING,
             requested_by=actor,
             requested_on=datetime.now(tz=pytz.utc),
+            link_parameter=link_parameter,
         )
         data_output.dataset_links.append(dataset_link)
         self.db.flush()

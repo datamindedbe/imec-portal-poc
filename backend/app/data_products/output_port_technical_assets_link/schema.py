@@ -1,3 +1,4 @@
+from typing import Optional
 from uuid import UUID
 from warnings import deprecated
 
@@ -11,6 +12,7 @@ class DataOutputDatasetAssociation(ORMModel):
     dataset_id: UUID
     data_output_id: UUID
     status: DecisionStatus
+    link_parameter: Optional[str] = None
 
 
 class TechnicalAssetOutputPortAssociation(ORMModel):
@@ -18,3 +20,4 @@ class TechnicalAssetOutputPortAssociation(ORMModel):
     output_port_id: UUID
     technical_asset_id: UUID
     status: DecisionStatus
+    link_parameter: Optional[str] = None

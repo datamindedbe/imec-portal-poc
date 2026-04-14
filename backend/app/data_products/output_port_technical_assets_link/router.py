@@ -267,6 +267,7 @@ def link_output_port_to_technical_asset(
         request.technical_asset_id,
         output_port_id,
         actor=authenticated_user,
+        link_parameter=request.link_parameter,
     )
 
     EventService(db).create_event(

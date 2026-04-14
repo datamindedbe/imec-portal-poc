@@ -523,6 +523,7 @@
     "Search Technical Assets by name": "Search $t(Technical Assets) by name",
     "Search Technical Assets by name or namespace": "Search $t(Technical Assets) by name or namespace",
     "Search users by email or name": "Search users by email or name",
+    "Select {{label}}": "Select {{label}}",
     "Select a Data Product": "Select a $t(Data Product)",
     "Select a node": "Select a node",
     "Select a role": "Select a role",

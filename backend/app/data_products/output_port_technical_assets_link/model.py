@@ -1,6 +1,6 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
-from sqlalchemy import UUID, Column, DateTime, Enum, ForeignKey, UniqueConstraint
+from sqlalchemy import UUID, Column, DateTime, Enum, ForeignKey, String, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.authorization.role_assignments.enums import DecisionStatus
@@ -24,6 +24,7 @@ class DataOutputDatasetAssociation(Base, BaseORM):
         Enum(DecisionStatus),
         default=DecisionStatus.PENDING,
     )
+    link_parameter: Mapped[Optional[str]] = mapped_column(String, nullable=True)
     requested_on = Column(DateTime(timezone=False), server_default=utcnow())
     approved_on = Column(DateTime(timezone=False))
     denied_on = Column(DateTime(timezone=False))

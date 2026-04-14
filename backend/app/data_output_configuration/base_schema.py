@@ -122,6 +122,7 @@ class PlatformMetadata(ORMModel):
     result_tooltip: str = "The output you can access through this technical asset"
     detailed_name: str
     show_in_form: bool = True
+    link_parameter_label: Optional[str] = None
 
 
 class AssetProviderPlugin(ORMModel, ABC):
@@ -172,6 +173,10 @@ class AssetProviderPlugin(ORMModel, ABC):
             SelectOption(label=option, value=option)
             for option in PlatformServiceConfiguration.model_validate(config).config
         ]
+
+    def get_link_parameter_options(self) -> list[str]:
+        """Returns available options for the link parameter. Override in subclasses."""
+        return []
 
     @classmethod
     def get_ui_metadata(cls, db: Session) -> list[UIElementMetadata]:
