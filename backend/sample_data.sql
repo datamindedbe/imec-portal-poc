@@ -82,6 +82,12 @@ declare
     databricks_configuration_id uuid;
     customer_segmentation_weekly_technical_asset_id uuid;
 
+    -- imec-data-product-01
+    imec_data_product_01_private_op_id uuid;
+    imec_data_product_01_restricted_op_id uuid;
+    imec_data_product_01_schema_asset_id uuid;
+    imec_data_product_01_api_asset_id uuid;
+
     product_owner_id uuid;
     admin_role_id uuid;
     product_member_id uuid;
@@ -566,6 +572,32 @@ begin
     SELECT gs::date, sales_performance_model_output_port, financial_risk_assessment, 8
     FROM generate_series((CURRENT_DATE - INTERVAL '4 months')::date, CURRENT_DATE - 1, INTERVAL '1 day') AS gs
     WHERE EXTRACT(ISODOW FROM gs) = 3;
+
+    -- ------------------------------------------------------------------------------------------------
+    -- imec-data-product-01 (owned by Alice Baker)
+    -- ------------------------------------------------------------------------------------------------
+    INSERT INTO public.data_products (id, "name", namespace, description, about, status, type_id, domain_id, created_on, updated_on, deleted_at, lifecycle_id, usage) VALUES ('caa9d435-d0c4-4dc5-a3d6-9b37c7e4135f', 'imec-data-product-01', 'imec-data-product-01', 'This is a imec data product', '', 'ACTIVE', '3c289333-2d55-4aed-8bd5-85015a1567fe', operations_and_logistics_domain_id, timezone('utc'::text, CURRENT_TIMESTAMP), NULL, NULL, '00000000-0000-0000-0000-000000000001', NULL);
+
+    INSERT INTO public.datasets (id, namespace, data_product_id, "name", description, about, status, access_type, created_on, updated_on, deleted_at) VALUES ('d259df83-55ea-450b-a77f-064417b4b2ae', 'private-output-port', 'caa9d435-d0c4-4dc5-a3d6-9b37c7e4135f', 'private output port', 'private output port', '', 'ACTIVE', 'PRIVATE', timezone('utc'::text, CURRENT_TIMESTAMP), NULL, NULL) returning id INTO imec_data_product_01_private_op_id;
+    INSERT INTO public.datasets (id, namespace, data_product_id, "name", description, about, status, access_type, created_on, updated_on, deleted_at) VALUES ('b18003da-5602-49f2-9feb-dbb6c7777169', 'restricted-output-port', 'caa9d435-d0c4-4dc5-a3d6-9b37c7e4135f', 'restricted output port', 'adjk', '', 'ACTIVE', 'RESTRICTED', timezone('utc'::text, CURRENT_TIMESTAMP), NULL, NULL) returning id INTO imec_data_product_01_restricted_op_id;
+
+    INSERT INTO public.data_output_configurations (id, configuration_type) VALUES ('accdb22e-71bc-44a4-b5a3-22f85b7b13d3', 'ImecSchemaTechnicalAssetConfiguration');
+    INSERT INTO public.imec_schema_technical_asset_configurations (id, schema, created_on, updated_on, deleted_at) VALUES ('accdb22e-71bc-44a4-b5a3-22f85b7b13d3', 'tools-logs', timezone('utc'::text, CURRENT_TIMESTAMP), NULL, NULL) returning id INTO imec_data_product_01_schema_asset_id;
+
+    INSERT INTO public.data_output_configurations (id, configuration_type) VALUES ('0eb1d72e-816e-4423-a86e-4aafd057bb73', 'AzureApiTechnicalAssetConfiguration');
+    INSERT INTO public.azure_api_technical_asset_configurations (id, api_name, api_type, rate_limiting_enabled, roles, max_replicas, max_requests_per_minute, base_url, created_on, updated_on, deleted_at) VALUES ('0eb1d72e-816e-4423-a86e-4aafd057bb73', 'tool-logs-api', 'Platform-managed', true, '["reader", "admin"]', 10, 10, '', timezone('utc'::text, CURRENT_TIMESTAMP), NULL, NULL) returning id INTO imec_data_product_01_api_asset_id;
+
+    INSERT INTO public.data_outputs (id, namespace, name, description, status, platform_id, service_id, owner_id, configuration, configuration_id, created_on, updated_on, deleted_at, technical_mapping) VALUES ('9bbcb812-230b-451f-8961-02e6a3bfa60d', 'tool-logs', 'tool-logs', 'tool logs schema asset', 'ACTIVE', imec_databricks_id, imec_databricks_service_id, 'caa9d435-d0c4-4dc5-a3d6-9b37c7e4135f', NULL, imec_data_product_01_schema_asset_id, timezone('utc'::text, CURRENT_TIMESTAMP), NULL, NULL, 'default');
+    INSERT INTO public.data_outputs (id, namespace, name, description, status, platform_id, service_id, owner_id, configuration, configuration_id, created_on, updated_on, deleted_at, technical_mapping) VALUES ('27e2822f-44f8-44a8-8cba-dedb7cbe5b25', 'logs-api', 'logs-api', 'api asset', 'ACTIVE', azure_platform_id, (SELECT id FROM public.platform_services WHERE name = 'azureapi' AND platform_id = azure_platform_id), 'caa9d435-d0c4-4dc5-a3d6-9b37c7e4135f', NULL, imec_data_product_01_api_asset_id, timezone('utc'::text, CURRENT_TIMESTAMP), NULL, NULL, 'default');
+
+    INSERT INTO public.data_outputs_datasets (id, data_output_id, dataset_id, status, requested_by_id, requested_on, approved_by_id, approved_on, denied_by_id, denied_on, created_on, updated_on, deleted_at, link_parameter) VALUES ('0a18d987-9df7-4a37-aea4-5f4ddb0423c9', '9bbcb812-230b-451f-8961-02e6a3bfa60d', imec_data_product_01_private_op_id,  'APPROVED', alice_id, timezone('utc'::text, CURRENT_TIMESTAMP), alice_id, timezone('utc'::text, CURRENT_TIMESTAMP), NULL, NULL, timezone('utc'::text, CURRENT_TIMESTAMP), timezone('utc'::text, CURRENT_TIMESTAMP), NULL, NULL);
+    INSERT INTO public.data_outputs_datasets (id, data_output_id, dataset_id, status, requested_by_id, requested_on, approved_by_id, approved_on, denied_by_id, denied_on, created_on, updated_on, deleted_at, link_parameter) VALUES ('c66a89b6-a815-481c-a66b-81ec33350e56', '27e2822f-44f8-44a8-8cba-dedb7cbe5b25', imec_data_product_01_private_op_id,  'APPROVED', alice_id, timezone('utc'::text, CURRENT_TIMESTAMP), alice_id, timezone('utc'::text, CURRENT_TIMESTAMP), NULL, NULL, timezone('utc'::text, CURRENT_TIMESTAMP), timezone('utc'::text, CURRENT_TIMESTAMP), NULL, 'reader');
+    INSERT INTO public.data_outputs_datasets (id, data_output_id, dataset_id, status, requested_by_id, requested_on, approved_by_id, approved_on, denied_by_id, denied_on, created_on, updated_on, deleted_at, link_parameter) VALUES ('5a30b265-5ebb-4b3e-9fc0-7263ff0c95b3', '9bbcb812-230b-451f-8961-02e6a3bfa60d', imec_data_product_01_restricted_op_id, 'APPROVED', alice_id, timezone('utc'::text, CURRENT_TIMESTAMP), alice_id, timezone('utc'::text, CURRENT_TIMESTAMP), NULL, NULL, timezone('utc'::text, CURRENT_TIMESTAMP), timezone('utc'::text, CURRENT_TIMESTAMP), NULL, NULL);
+    INSERT INTO public.data_outputs_datasets (id, data_output_id, dataset_id, status, requested_by_id, requested_on, approved_by_id, approved_on, denied_by_id, denied_on, created_on, updated_on, deleted_at, link_parameter) VALUES ('b88430b1-00ae-4f8a-99aa-5649664c5f15', '27e2822f-44f8-44a8-8cba-dedb7cbe5b25', imec_data_product_01_restricted_op_id, 'APPROVED', alice_id, timezone('utc'::text, CURRENT_TIMESTAMP), alice_id, timezone('utc'::text, CURRENT_TIMESTAMP), NULL, NULL, timezone('utc'::text, CURRENT_TIMESTAMP), timezone('utc'::text, CURRENT_TIMESTAMP), NULL, 'reader');
+
+    INSERT INTO public.role_assignments_data_product (id, data_product_id, user_id, role_id, decision, requested_by_id, requested_on, decided_by_id, decided_on, created_on, updated_on, deleted_at) VALUES ('f619fbd1-8eaf-43d8-9d2b-620ae2bcb7a8', 'caa9d435-d0c4-4dc5-a3d6-9b37c7e4135f', alice_id, product_owner_id, 'APPROVED', alice_id, timezone('utc'::text, CURRENT_TIMESTAMP), alice_id, timezone('utc'::text, CURRENT_TIMESTAMP), timezone('utc'::text, CURRENT_TIMESTAMP), timezone('utc'::text, CURRENT_TIMESTAMP), NULL);
+    INSERT INTO public.role_assignments_dataset (id, dataset_id, user_id, role_id, decision, requested_by_id, requested_on, decided_by_id, decided_on, created_on, updated_on, deleted_at) VALUES (gen_random_uuid(), imec_data_product_01_private_op_id, alice_id, dataset_owner_id, 'APPROVED', alice_id, timezone('utc'::text, CURRENT_TIMESTAMP), alice_id, timezone('utc'::text, CURRENT_TIMESTAMP), timezone('utc'::text, CURRENT_TIMESTAMP), NULL, NULL);
+    INSERT INTO public.role_assignments_dataset (id, dataset_id, user_id, role_id, decision, requested_by_id, requested_on, decided_by_id, decided_on, created_on, updated_on, deleted_at) VALUES (gen_random_uuid(), imec_data_product_01_restricted_op_id, alice_id, dataset_owner_id, 'APPROVED', alice_id, timezone('utc'::text, CURRENT_TIMESTAMP), alice_id, timezone('utc'::text, CURRENT_TIMESTAMP), timezone('utc'::text, CURRENT_TIMESTAMP), NULL, NULL);
 
     -- ------------------------------------------------------------------------------------------------
     -- START of Insert data quality summary for half of the existing datasets
