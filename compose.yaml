@@ -24,7 +24,7 @@ services:
   frontend:
     build: ./frontend
     volumes:
-      - ${PWD:-.}/frontend/config.docker.js:/app/dist/config.js
+      - ./frontend/config.docker.js:/app/dist/config.js
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080"]
       interval: 5s
